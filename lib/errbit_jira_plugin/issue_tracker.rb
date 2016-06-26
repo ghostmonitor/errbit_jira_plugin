@@ -103,9 +103,6 @@ module ErrbitJiraPlugin
       client = JIRA::Client.new(jira_options)
       project = client.Project.find(params['project_id'])
 
-      puts environment
-      puts user
-
       issue_fields = {
         'fields' => {
           'summary' => title,
