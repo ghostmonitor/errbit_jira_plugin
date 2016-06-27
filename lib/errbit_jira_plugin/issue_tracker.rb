@@ -99,7 +99,7 @@ module ErrbitJiraPlugin
       }
     end
 
-    def create_issue(title, body, environment, user: {})
+    def create_issue(title, body, problem, user: {})
       client = JIRA::Client.new(jira_options)
       project = client.Project.find(params['project_id'])
 
@@ -107,7 +107,7 @@ module ErrbitJiraPlugin
         'fields' => {
           'summary' => title,
           'description' => body,
-          'environment' => environment,
+          'environment' => problem.environment,
           'project' => { 'id' => project.id },
           'issuetype' => { 'id' => params['issue_type'] },
           'priority' => { 'name' => params['issue_priority'] }
